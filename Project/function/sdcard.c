@@ -124,7 +124,7 @@ BYTE wait_ready(UINT wt)
 {
     BYTE res;
 		uint32_t TIMEA;
-    TIMEA=wt*100;
+    TIMEA=wt*10000;
     receiveabyte();
     do
         res = receiveabyte();
@@ -151,7 +151,7 @@ int receivedatablock(BYTE *buff,UINT btr)
     BYTE token;
 		uint32_t TIMEA;
     CSSelect;
-    TIMEA = 200*100;
+    TIMEA = 200*100000;
     do
     {
         token = receiveabyte();

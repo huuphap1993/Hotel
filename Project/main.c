@@ -33,7 +33,10 @@ int main(void)
 	Gettime();
 	GPIO74165Init();
 	ReadInput(datainp,5);
-	SD_cardInit();
+	if(!(SD_cardInit()==FR_OK))
+	{
+		
+	}
 	SysTick_Config(SystemCoreClock / 100);
 
 

@@ -19,8 +19,9 @@
 	 i16_sd_open_file("log.txt",0);
  }
  
- void writelog(uint8_t u8_port, bool port_status)
+ uint16_t writelog(uint8_t u8_port, bool port_status)
  {
+	 FRESULT iFResult;
 	 GetDIR();
 	 link[0]=numconver[TimeNow.u8_day/10];
 	 link[1]=numconver[TimeNow.u8_day%10];
@@ -47,7 +48,7 @@
 	 link[5]=numconver[u8_port/10];
 	 link[6]=numconver[u8_port%10];
 	 link[7]=' ';
-	 i16_sd_write_bytes(link, 8);
+	 iFResult=i16_sd_write_bytes(link, 8);
 	 if(port_status)
 	 {
 		 link[0]='O';
@@ -66,6 +67,7 @@
 		 i16_sd_write_bytes(link, 5);
 	 }
 	 i16_sd_close_file();
+	 return iFResult;
  }
  
  void u8_savedata(uint8_t u8_number,bool b_status,uint16_t u16_timenow,uint32_t *outdata)

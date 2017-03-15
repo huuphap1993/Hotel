@@ -2,13 +2,13 @@
 .\sdcard.o: function\sdcard.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_rcc.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include\stm32f10x.h
-.\sdcard.o: D:\Github\Project\Project\RTE\RTE_Components.h
+.\sdcard.o: D:\Github\Hotel\Project\RTE\RTE_Components.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cm3.h
 .\sdcard.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmInstr.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.0\CMSIS\Include\core_cmFunc.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include\system_stm32f10x.h
-.\sdcard.o: D:\Github\Project\Project\RTE\Device\STM32F103C8\stm32f10x_conf.h
+.\sdcard.o: D:\Github\Hotel\Project\RTE\Device\STM32F103C8\stm32f10x_conf.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_exti.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include\stm32f10x.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
@@ -16,7 +16,7 @@
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\misc.h
 .\sdcard.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_spi.h
 .\sdcard.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdbool.h
-.\sdcard.o: function\diskio.h
-.\sdcard.o: function\integer.h
 .\sdcard.o: function\ff.h
+.\sdcard.o: function\integer.h
 .\sdcard.o: function\ffconf.h
+.\sdcard.o: function\diskio.h

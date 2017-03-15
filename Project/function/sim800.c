@@ -228,6 +228,12 @@ void SIM_CMD1(uint8_t u8_cmd,char* mess,uint8_t leng)
 		}
 		break;
 		
+		case SIM_MONEY:
+		{
+			UART_printf("AT+CMGF=1\n",11);
+		}
+		break;
+		
 	}
 }
 
@@ -372,6 +378,10 @@ void v_matchmessage(char* mess,char* sendmess,uint8_t leng,uint8_t *lengs)
 			sendmess[i]=mess[i];
 		}
 	}
-	
-	
 }
+
+uint8_t u8_GetSimStatus(void)
+{
+	return simstatus;
+}
+

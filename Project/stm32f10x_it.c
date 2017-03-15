@@ -53,6 +53,10 @@ uint32_t powertime;
 uint32_t alarmtout;
 char c_mess[290],s_mess[290];
 
+
+	
+	char FlagError[6];
+
 /** @addtogroup STM32F10x_StdPeriph_Examples
   * @{
   */
@@ -167,9 +171,18 @@ void SysTick_Handler(void)
 {
 	int i,i1;
 	u32_timecount++;
-	if(!(u32_timecount%100000))
+	if(!(u32_timecount%200))
 	{
-		SD_cardInit();
+		if(!FlagError[SD_NotExist]==FR_OK)
+		{
+			FlagError[SD_NotExist]=SD_cardInit();
+		}
+		if(u8_GetSimStatus()==SIM_ERROR)
+		{
+			FlagError[SIM_ErrorCommand]=1;
+		}
+
+		
 	}
 	if(!(u32_timecount%100))
 	{
@@ -180,8 +193,19 @@ void SysTick_Handler(void)
 		else
 		{			
 			LED_Debug1ON;
-		}	
+		}
 		Gettime();
+		
+		if(TimeNow.u8_year<17)
+		{
+			FlagError[TIME_ERROR]=1;
+		}
+		else
+		{
+			FlagError[TIME_ERROR]=1;
+		}
+		
+		
 		Now=converttime();
 		ReadInput(datainn,5);
 		comparedata(datainn,datainp,datac);
@@ -273,6 +297,7 @@ void SysTick_Handler(void)
 							{
 									if((!(datainn[i]>>i1)&0x01))
 									{
+										
 										writelog(i*8+i1,1);
 										count[i*8+i1]=0;
 									}

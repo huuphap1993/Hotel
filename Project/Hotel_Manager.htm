@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Hotel_Manager.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Hotel_Manager.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Tue Mar 14 23:15:03 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Wed Mar 15 08:45:58 2017
 <BR><P>
 <H3>Maximum Stack Usage =        408 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -578,7 +578,7 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disk_initialize
 </UL>
 
-<P><STRONG><a name="[91]"></a>wait_ready</STRONG> (Thumb, 46 bytes, Stack size 16 bytes, sdcard.o(.text))
+<P><STRONG><a name="[91]"></a>wait_ready</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, sdcard.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = wait_ready &rArr; receiveabyte &rArr; SPI_SoftWrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receiveabyte
@@ -595,7 +595,7 @@ Global Symbols
 <LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
 
-<P><STRONG><a name="[93]"></a>receivedatablock</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, sdcard.o(.text))
+<P><STRONG><a name="[93]"></a>receivedatablock</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, sdcard.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = receivedatablock &rArr; receiveabyte &rArr; SPI_SoftWrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receiveabyte
@@ -636,7 +636,7 @@ Global Symbols
 <LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disk_initialize
 </UL>
 
-<P><STRONG><a name="[78]"></a>disk_initialize</STRONG> (Thumb, 370 bytes, Stack size 24 bytes, sdcard.o(.text))
+<P><STRONG><a name="[78]"></a>disk_initialize</STRONG> (Thumb, 374 bytes, Stack size 24 bytes, sdcard.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = disk_initialize &rArr; SD_Cmd &rArr; wait_ready &rArr; receiveabyte &rArr; SPI_SoftWrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SD_Cmd
@@ -717,7 +717,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetDIR
 </UL>
 
-<P><STRONG><a name="[49]"></a>SD_cardInit</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, sdcard.o(.text))
+<P><STRONG><a name="[49]"></a>SD_cardInit</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, sdcard.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = SD_cardInit &rArr; f_opendir &rArr; follow_path &rArr; dir_find &rArr; dir_next &rArr; create_chain &rArr; put_fat &rArr; move_window &rArr; sync_window &rArr; disk_write &rArr; SD_Cmd &rArr; wait_ready &rArr; receiveabyte &rArr; SPI_SoftWrite
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;disk_initialize

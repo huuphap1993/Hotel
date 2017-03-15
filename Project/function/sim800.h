@@ -45,6 +45,7 @@ typedef struct
 	 SIM_ATE1,
 	 SIM_SMSTEXT,
 	 SIM_SMSNUMBER,
+	 SIM_MONEY
  }Simcmd;
   void sim800Init(void);
 	void SIM_CMD(uint8_t u8_cmd,const char* mess,uint8_t length);
@@ -53,8 +54,7 @@ void Gettime(void);
 uint16_t converttime(void);
  void v_MessengerConvert(uint32_t *datarelay,uint8_t u8_port,char* mess,uint8_t *leng);
 void v_matchmessage(char* mess,char* sendmess,uint8_t leng,uint8_t *lengs);
-
- 
+ uint8_t u8_GetSimStatus(void);
 void SIM_CMD1(uint8_t u8_cmd,char* mess,uint8_t leng);
 
  
