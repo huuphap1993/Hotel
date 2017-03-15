@@ -171,14 +171,22 @@ void SysTick_Handler(void)
 {
 	int i,i1;
 	u32_timecount++;
+	SysTick->CTRL=SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_ENABLE_Msk;
+
 	if(!(u32_timecount%200))
 	{
-		if(!FlagError[SD_NotExist]==FR_OK)
-		{
-			FlagError[SD_NotExist]=SD_cardInit();
-		}
+//		if(!FlagError[SD_NotExist]==FR_OK)
+//		{
+//			FlagError[SD_NotExist]=SD_cardInit();
+//			LED_Debug2ON;
+//		}
+//		else
+//		{
+//			LED_Debug2OFF;
+//		}
 		if(u8_GetSimStatus()==SIM_ERROR)
 		{
+			LED_Debug2OFF;
 			FlagError[SIM_ErrorCommand]=1;
 		}
 
@@ -194,7 +202,7 @@ void SysTick_Handler(void)
 		{			
 			LED_Debug1ON;
 		}
-		Gettime();
+		
 		
 		if(TimeNow.u8_year<17)
 		{
@@ -205,12 +213,15 @@ void SysTick_Handler(void)
 			FlagError[TIME_ERROR]=1;
 		}
 		
-		
+		Gettime();
 		Now=converttime();
 		ReadInput(datainn,5);
 		comparedata(datainn,datainp,datac);
-		*datainp=*datainn;
-		
+		datainp[0]=datainn[0];
+		datainp[1]=datainn[1];
+		datainp[2]=datainn[2];
+		datainp[3]=datainn[3];
+		datainp[4]=datainn[4];
 		if(!(datainn[4]>>7)&0x01)
 		{
 			powertime++;
@@ -236,11 +247,12 @@ void SysTick_Handler(void)
 				s_mess[23]=numcon[TimeNow.u8_year/10];
 				s_mess[24]=numcon[TimeNow.u8_year%10];
 				SIM_CMD1(SIM_SMSNUMBER,s_mess,25);
+				powertime=0;
 			}
 		}
 		else
 		{
-			powertime=0;
+			powertime=3000;
 		}
 		
 		if((datainn[4]>>6)&0x01)
@@ -295,25 +307,26 @@ void SysTick_Handler(void)
 					{
 						if(datac[i]&(1<<i1))
 							{
-									if((!(datainn[i]>>i1)&0x01))
+									if(!((datainn[i]>>i1)&0x01))
 									{
 										
 										writelog(i*8+i1,1);
 										count[i*8+i1]=0;
+										countrx[i*8+i1]=0x40;
 									}
 									else
 									{
 										writelog(i*8+i1,0);
 										countrx[i*8+i1]=0x00;
-										
+										count[i*8+i1]=timeout1+0x50;
 									}
 							}
 							else
 							{
-								if((!(datainn[i]>>i1)&0x01))
+								if(!((datainn[i]>>i1)&0x01))
 								{
-									countrx[i*8+i1]=0x30;
-										if(count[i*8+i1]<timeout1)
+									countrx[i*8+i1]=0x40;
+										if(count[i*8+i1]<10)
 											{
 												count[i*8+i1]++;
 											}
@@ -322,7 +335,7 @@ void SysTick_Handler(void)
 													if(count[i*8+i1]<(timeout1+0x40))
 													{
 														s_mess[0]='P';s_mess[1]='H';s_mess[2]='O';s_mess[3]='N';s_mess[4]='G';s_mess[5]=':';
-														if(i==1)
+														if(i==0)
 														{
 														s_mess[6]=numcon[(i*8+i1+1)/10];
 														s_mess[7]=numcon[(i*8+i1+1)%10];
@@ -349,8 +362,6 @@ void SysTick_Handler(void)
 														s_mess[21]=numcon[TimeNow.u8_year/10];
 														s_mess[22]=numcon[TimeNow.u8_year%10];
 														s_mess[23]=':';
-
-										
 														s_mess[24]='V';
 														s_mess[25]='A';
 														s_mess[26]='O';
@@ -361,7 +372,7 @@ void SysTick_Handler(void)
 									}
 								else
 								{
-									count[i*8+i1]=0;
+									count[i*8+i1]=timeout1+0x50;
 									if(countrx[i*8+i1]<10)
 									{
 										countrx[i*8+i1]++;
@@ -403,6 +414,8 @@ void SysTick_Handler(void)
 										s_mess[25]='A';
 										countrx[i*8+i1]=0x40;
 										SIM_CMD1(SIM_SMSNUMBER,s_mess,26);
+										
+
 										}
 										
 									}
@@ -410,9 +423,9 @@ void SysTick_Handler(void)
 							}
 					}
 		}
-		
+			
 	}
-	
+	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk | SysTick_CTRL_TICKINT_Msk | SysTick_CTRL_ENABLE_Msk;
 	
 //	if(TimeNow.u8_day!=TimePart.u8_day)
 //	{

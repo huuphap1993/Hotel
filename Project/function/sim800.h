@@ -56,6 +56,7 @@ uint16_t converttime(void);
 void v_matchmessage(char* mess,char* sendmess,uint8_t leng,uint8_t *lengs);
  uint8_t u8_GetSimStatus(void);
 void SIM_CMD1(uint8_t u8_cmd,char* mess,uint8_t leng);
+uint32_t SetSIMstatus(uint8_t u8_status);
 
  
  

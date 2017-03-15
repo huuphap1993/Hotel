@@ -283,6 +283,21 @@
           <WinNumber>1</WinNumber>
           <ItemText>messagecmd</ItemText>
         </Ww>
+        <Ww>
+          <count>23</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>count</ItemText>
+        </Ww>
+        <Ww>
+          <count>24</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>datac</ItemText>
+        </Ww>
+        <Ww>
+          <count>25</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>countrx</ItemText>
+        </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>

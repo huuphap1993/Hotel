@@ -432,7 +432,7 @@ DRESULT disk_ioctl (BYTE drv,BYTE cmd, void *buff)
         {
             st*=512;ed*=512;
         }
-        if(SD_Cmd(CMD32,st)==0 &&SD_Cmd(CMD33,ed) ==0 && SD_Cmd(CMD38,0)==0 && wait_ready(3000))
+        if(SD_Cmd(CMD32,st)==0 &&SD_Cmd(CMD33,ed) ==0 && SD_Cmd(CMD38,0)==0 && wait_ready(30))
         {
             res=RES_OK;
         }
@@ -504,14 +504,15 @@ int i16_sd_open_file(char *txtname, bool RnW)
 FRESULT SD_cardInit(void)
 {
 	FRESULT iFResult;
-	disk_initialize(0);
+	DSTATUS iStatus;
+	iStatus=disk_initialize(0);
 	iFResult =f_mount(0, &g_sFatFs);
 	if((!iFResult==FR_OK))
 	{
 		return iFResult;
 	}
-	iFResult=f_opendir(&g_sDirObject, "./");
-	return iFResult;
+	f_opendir(&g_sDirObject, "./");
+	return iStatus;
 	
 }
 

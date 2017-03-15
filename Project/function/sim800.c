@@ -110,6 +110,10 @@ uint8_t u8_SIMCheck(uint8_t u8_datain,char* u8_dataout,uint8_t u8_status,uint8_t
 	return 0;
 }
 
+uint32_t SetSIMstatus(uint8_t u8_status)
+{
+	u8_rxstatus=u8_status;
+}
 void v_checkdata(uint8_t u8_datain)
 {
 	u8_rxstatus=u8_SIMCheck(u8_datain,messagecmd,u8_rxstatus,u8_count);
@@ -225,6 +229,11 @@ void SIM_CMD1(uint8_t u8_cmd,char* mess,uint8_t leng)
 			
 			UART_Send(0x1A);
 			UART_Send(0x0D);
+			timeout=0x1ffffff;
+			while(timeout--)
+			{
+			}
+			u8_rxstatus=0;
 		}
 		break;
 		
@@ -246,13 +255,13 @@ void Gettime(void)
 {
 	uint32_t timeout;
 	UART_printf("AT+CCLK?\n",10);
-	timeout=0xfffff;
+	timeout=0xffff;
 	while(timeout--)
 	{
 		if(simstatus==COMMAND_OK)
 			break;
 	}
-		timeout=0xfffff;
+		timeout=0xffff;
 	while(timeout--)
 	{
 		if(simstatus==TIMEGET_OK)
